@@ -1,2 +1,4 @@
 build.rs.sh
 README
+.travis.yml
+.deploy.sh
