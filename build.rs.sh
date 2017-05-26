@@ -1,4 +1,7 @@
 #!/bin/sh -eu
+
+# This is the outer build script, which spawns the actual build job in the container.
+
 BASEDIR=$(dirname "$0")
 : ${BUILD_RS_IMAGE:="ngrewe/build.rs:latest"}
 if [ "$#" -eq 0 ]; then

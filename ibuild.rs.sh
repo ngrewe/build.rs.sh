@@ -1,4 +1,7 @@
 #!/bin/sh -eu
+
+# This is the inner build script, running inside the container.
+
 BUILD_DIR=`mktemp -d`
 cp -r /rust/* $BUILD_DIR/
 cd $BUILD_DIR
