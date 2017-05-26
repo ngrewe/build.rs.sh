@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/sh -xe
 if [[ -n "${TRAVIS_TAG}" ]]; then
   docker tag ngrewe/build.rs:latest ${TRAVIS_TAG}	
 fi
