@@ -1,6 +1,5 @@
 #!/bin/sh -eu
 BUILD_DIR=`mktemp -d`
-echo "Beginning build in $BUILD_DIR"
 cp -r /rust/* $BUILD_DIR/
 cd $BUILD_DIR
 rm -rf target
