@@ -24,10 +24,9 @@ SRC=`realpath $SRC`
 mkdir -p $DEST
 DEST=`realpath $DEST`
 PERM=`stat -c%a $DEST`
-chmod o+rwx $DEST
-trap 'chmod $PERM $DEST' EXIT
+BUILDER_UID=`id -u`
+BUILDER_GID=`id -g`
 echo "Building rust project at $SRC";
 echo "Artifacts will be placed in $DEST";
-echo -e "\e[91mWarn: $DEST will be world-readable during the build.\e[39m";
-docker pull $BUILD_RS_IMAGE
-docker run --rm -v $SRC/:/rust:ro -v$DEST/:/target:z $BUILD_RS_IMAGE "$@"
+# docker pull $BUILD_RS_IMAGE
+docker run --rm --user $BUILDER_UID:$BUILDER_GID -v $SRC/:/rust:ro -v$DEST/:/target:z $BUILD_RS_IMAGE "$@"

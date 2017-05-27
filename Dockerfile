@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /rust
 USER rusty
 ENV PATH=$PATH:/home/rusty/.cargo/bin \
-  USER=rusty
+  USER=rusty \
+  HOME=/home/rusty
 VOLUME /rust
 VOLUME /target
 ADD ibuild.rs.sh /entrypoint.sh
