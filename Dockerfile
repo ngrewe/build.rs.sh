@@ -17,12 +17,15 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /home/rusty/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/* \
   && apt-get remove -y curl ca-certificates \
   && apt-get -y autoremove \
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/*
 WORKDIR /rust
 USER rusty
 ENV PATH=$PATH:/home/rusty/.cargo/bin \
   USER=rusty \
   HOME=/home/rusty
+RUN mkdir -p /home/rusty/.cargo/registry \
+  && chmod a+x /home/rusty/.cargo/registry \
+  && chmod -R a+rw /home/rusty/.cargo/registry
 VOLUME /rust
 VOLUME /target
 ADD ibuild.rs.sh /entrypoint.sh
